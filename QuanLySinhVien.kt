@@ -83,6 +83,26 @@ fun main() {
                 if (students.removeIf { it.id.equals(id, ignoreCase = true) }) println("=> Đã xóa sinh viên $id.")
                 else println("=> Không tìm thấy sinh viên.")
             }
+            "7" -> println("=> Số sinh viên GPA >= 8.0: ${students.count { it.gpa >= 8.0 }}")
+            "8" -> println("=> Số sinh viên GPA < 5.0: ${students.count { it.gpa < 5.0 }}")
+            "9" -> {
+                val oldest = students.maxByOrNull { it.age }
+                if (oldest != null) {
+                    println("=> Sinh viên lớn tuổi nhất:"); displayStudent(oldest)
+                }
+            }
+            "10" -> {
+                val found = students.filter { it.gpa in 7.0..8.5 }
+                if (found.isEmpty()) println("=> Không có sinh viên nào.")
+                else found.forEach { displayStudent(it) }
+            }
+            "11" -> {
+                print("Nhập ngành: ")
+                val major = readln()
+                val found = students.filter { it.major.equals(major, ignoreCase = true) }
+                if (found.isEmpty()) println("=> Không có sinh viên ngành $major.")
+                else found.forEach { displayStudent(it) }
+            }
             "0" -> {
                 println("Đã thoát chương trình.")
                 return
