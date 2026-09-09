@@ -43,6 +43,26 @@ fun main() {
         print("Choose: ")
 
         when (readlnOrNull()?.trim()) {
+            "1" -> {
+                print("Nhập Student ID: "); val id = readln()
+                print("Nhập Full Name: "); val name = readln()
+                print("Nhập Age: "); val age = readln().toIntOrNull() ?: 0
+                print("Nhập Major: "); val major = readln()
+                print("Nhập GPA: "); val gpa = readln().toDoubleOrNull() ?: 0.0
+                students.add(Student(id, name, age, major, gpa))
+                println("=> Thêm sinh viên thành công!")
+            }
+            "2" -> {
+                println("--- Danh sách sinh viên ---")
+                if (students.isEmpty()) println("Danh sách trống.")
+                else students.forEach { displayStudent(it) }
+            }
+            "6" -> {
+                print("Nhập ID cần xóa: ")
+                val id = readln()
+                if (students.removeIf { it.id.equals(id, ignoreCase = true) }) println("=> Đã xóa sinh viên $id.")
+                else println("=> Không tìm thấy sinh viên.")
+            }
             "0" -> {
                 println("Đã thoát chương trình.")
                 return
