@@ -57,6 +57,26 @@ fun main() {
                 if (students.isEmpty()) println("Danh sách trống.")
                 else students.forEach { displayStudent(it) }
             }
+            "3" -> {
+                print("Nhập từ khóa tên cần tìm: ")
+                val keyword = readln()
+                val found = students.filter { it.name.contains(keyword, ignoreCase = true) }
+                if (found.isEmpty()) println("=> Không tìm thấy.")
+                else found.forEach { displayStudent(it) }
+            }
+            "4" -> {
+                print("Nhập ngành cần tính GPA trung bình: ")
+                val major = readln()
+                val filtered = students.filter { it.major.equals(major, ignoreCase = true) }
+                if (filtered.isNotEmpty()) println("=> ĐTB ngành $major: ${filtered.map { it.gpa }.average()}")
+                else println("=> Không có sinh viên ngành này.")
+            }
+            "5" -> {
+                val highest = students.maxByOrNull { it.gpa }
+                if (highest != null) {
+                    println("=> Sinh viên có GPA cao nhất:"); displayStudent(highest)
+                } else println("Danh sách trống.")
+            }
             "6" -> {
                 print("Nhập ID cần xóa: ")
                 val id = readln()
