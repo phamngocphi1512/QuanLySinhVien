@@ -103,6 +103,22 @@ fun main() {
                 if (found.isEmpty()) println("=> Không có sinh viên ngành $major.")
                 else found.forEach { displayStudent(it) }
             }
+            "12" -> {
+                println("--- Danh sách sắp xếp GPA giảm dần ---")
+                students.sortedByDescending { it.gpa }.forEach { displayStudent(it) }
+            }
+            "13" -> {
+                println("--- Top 3 sinh viên có GPA cao nhất ---")
+                students.sortedByDescending { it.gpa }.take(3).forEach { displayStudent(it) }
+            }
+            "14" -> {
+                println("--- Danh sách sắp xếp theo tuổi ---")
+                students.sortedBy { it.age }.forEach { displayStudent(it) }
+            }
+            "15" -> {
+                println("--- Danh sách sắp xếp theo tên ---")
+                students.sortedBy { it.name }.forEach { displayStudent(it) }
+            }
             "0" -> {
                 println("Đã thoát chương trình.")
                 return
